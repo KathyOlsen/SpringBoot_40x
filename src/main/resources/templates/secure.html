@@ -9,6 +9,10 @@
     <div class="jumbotron">
         <h3>Secure Page</h3>
         <a href="/logout">logout</a>
+        <h4>email</h4>
+        <p th:text="${user.email}"></p><br>
+        <h4>last name</h4>
+        <p th:text="${user.lastName}"></p>
     </div>
 </div>
 <div th:insert="base :: bootstrapScripts"></div>
