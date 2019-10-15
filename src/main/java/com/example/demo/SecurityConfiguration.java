@@ -15,7 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
-    public static BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
@@ -35,13 +35,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/","/h2-console/**").permitAll()
                 .antMatchers("/admin")
-                .access("hasAuthority('ADMIN')")
-                .anyRequest().authenticated()
+                    .access("hasAuthority('ADMIN')")
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll()
+                    .logoutSuccessUrl("/login").permitAll()
                 .and()
                 .httpBasic();
         http.csrf().disable();
