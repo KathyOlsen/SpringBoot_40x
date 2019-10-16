@@ -36,7 +36,7 @@ public class HomeController {
             userService.saveUser(user);
             model.addAttribute("message","User Account Created");
         }
-        return "index";
+        return "login";
     }
 
     @RequestMapping("/")
@@ -50,9 +50,13 @@ public class HomeController {
     }
 
     @RequestMapping("/secure")
-    public String secure(Principal principal, Model model){
-        String username = principal.getName();
-        model.addAttribute("user",userRepository.findByUsername(username));
+    public String secure(){
         return "secure";
+    }
+
+    @RequestMapping("/admin")
+    public String admin(){
+//        model.addAttribute("xxxs", xxxRepository.findAll());
+        return "admin";
     }
 }
