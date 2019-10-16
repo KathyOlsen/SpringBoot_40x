@@ -4,19 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class HomeController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Autowired
     private UserService userService;
@@ -56,7 +55,39 @@ public class HomeController {
 
     @RequestMapping("/admin")
     public String admin(){
-//        model.addAttribute("xxxs", xxxRepository.findAll());
         return "admin";
+    }
+
+    @RequestMapping("/rolelist")
+    public String roleList(Model model){
+        model.addAttribute("roles", roleRepository.findAll());
+        return "rolelist";
+    }
+
+    @RequestMapping("/userlist")
+    public String userList(Model model){
+        model.addAttribute("users", userRepository.findAll());
+        return "userlist";
+    }
+
+//    Fix - won't save user role-tries to save it as a new user with null fields, which it rejects
+    @PostMapping("/processuserrole")
+    public String processUserRole(Model model, User user, Role role){
+        userService.saveUser(user);
+
+        return "redirect:/showuser";
+    }
+
+    @RequestMapping("/detail_role/{id}")
+    public String showRole(@PathVariable("id") long id, Model model){
+        model.addAttribute("role", roleRepository.findById(id).get());
+        return "showrole";
+    }
+
+    @RequestMapping("/detail_user/{id}")
+    public String showUser(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
+        model.addAttribute("roles", roleRepository.findAll());
+        return "showuser";
     }
 }
