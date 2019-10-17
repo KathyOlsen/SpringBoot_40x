@@ -8,11 +8,13 @@ body{
 
 h1{
     text-align: center;
+    color: darkblue;
 
 }
 
 h2{
     text-align: center;
+    color: darkblue;
 }
 
 h3{
@@ -20,7 +22,8 @@ h3{
 }
 
 h6{
-    /*text-align: center;*/
+    text-align: center;
+    color: darkblue;
 }
 
 a{

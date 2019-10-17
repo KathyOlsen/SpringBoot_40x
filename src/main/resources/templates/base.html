@@ -20,7 +20,7 @@
         <a sec:authorize="!isAuthenticated()" class="nav-link"  style="color: whitesmoke" href="/login">Log In</a>&nbsp;
         <a sec:authorize="!isAuthenticated()" class="nav-link"  style="color: whitesmoke" href="/register">Register</a>&nbsp;
         <a sec:authorize="isAuthenticated()" class="nav-link"  style="color: whitesmoke" href="/list">xxx List</a>&nbsp;
-        <a sec:authorize="hasAuthority('ADMIN')"class="nav-link"  style="color: whitesmoke" href="/add">Add A xxx</a>&nbsp;
+        <a sec:authorize="hasAuthority('ADMIN')" class="nav-link"  style="color: whitesmoke" href="/add">Add A xxx</a>&nbsp;
         <a sec:authorize="isAuthenticated()" class="nav-link"  style="color: whitesmoke" href="/logout">Log Out</a>
         <a sec:authorize="hasAuthority('ADMIN')" class="nav-link"  style="color: whitesmoke" href="/admin">Administrator</a>
     </nav>

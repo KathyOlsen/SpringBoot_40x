@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Car Detail</title>
+    <title>User Detail</title>
     <div th:insert="base :: head"></div>
 </head>
 <body>
@@ -9,7 +9,7 @@
 <br>
 <div class="container">
     <div class="jumbotron">
-        <h1 style="color: darkblue">User Details</h1>
+        <h1 >User Details</h1>
         <table style="alignment: center">
             <tr>
                 <td>First Name: &nbsp;</td>
@@ -31,6 +31,7 @@
                 <td>Roles: &nbsp;</td>
                 <td>
                     <tr th:each="role : ${user.roles}">
+                        <td></td>
 <!--fixed following line so it returned English instead of hex address by using role.role instead of just role-->
                         <td th:text="${role.role}"></td>
                         <td>
@@ -56,7 +57,6 @@
                 <option th:each="role : ${roles}"
                         th:value="${role.id}"
                         th:text="${role.role}">
-
                 </option>
             </select>
             <br><br>

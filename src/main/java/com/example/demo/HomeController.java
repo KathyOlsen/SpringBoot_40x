@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 
 @Controller
 public class HomeController {
@@ -70,12 +71,11 @@ public class HomeController {
         return "userlist";
     }
 
-//    Fix - won't save user role-tries to save it as a new user with null fields, which it rejects
+//    Fix - gives error no role with id=3
     @PostMapping("/processuserrole")
-    public String processUserRole(@Valid User user, BindingResult result){
-//        user.setRoles().add(role);
+    public String processUserRole(@Valid User user, BindingResult result, Role role){
+        user.getRoles().add(role);
         userRepository.save(user);
-
         return "showuser";
     }
 
@@ -89,6 +89,23 @@ public class HomeController {
     public String showUser(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userRepository.findById(id).get());
         model.addAttribute("roles", roleRepository.findAll());
+        return "showuser";
+    }
+
+//    fix-gives null pointer exception error at for loop (line100)
+    @RequestMapping("/detail_user/delete_user_role/{id}")
+    public String delUserRole(@PathVariable("id") long id, User user){
+        System.out.println("Inside delete method");
+//        Collection<Role> roles = user.getRoles();
+        for (Role role : user.getRoles()){
+            System.out.println("Inside for loop");
+            if(role.getId() == id){
+                System.out.println("Inside if statement");
+                user.getRoles().remove(role);
+            }
+        }
+//        user.setRoles(roles);
+        userRepository.save(user);
         return "showuser";
     }
 }

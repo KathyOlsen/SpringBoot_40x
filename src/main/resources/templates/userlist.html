@@ -9,17 +9,18 @@
 <br>
 <div class="container">
     <div class="jumbotron">
-        <h2 style="color: darkblue">User List</h2>
+        <h1>User List</h1>
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-9">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11">
                 <table>
                     <tr>
                         <th>First Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th>Roles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Roles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         <th>Options&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                     </tr>
                     <tr th:each="user : ${users}">
@@ -27,8 +28,8 @@
                         <td th:text="${user.lastName}"></td>
                         <td th:text="${user.username}"></td>
                         <td th:text="${user.email}"></td>
-<!--                        Change following to iterate list of roles-->
-                        <td th:text="${user.roles}"></td>
+                        <td th:each="role : ${user.roles}" th:text="${role.role} ">
+                        <td></td>
                         <td>
                             <a th:href="@{detail_user/{id}(id=${user.id})}">Details</a>
                         </td>
