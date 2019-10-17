@@ -72,10 +72,11 @@ public class HomeController {
 
 //    Fix - won't save user role-tries to save it as a new user with null fields, which it rejects
     @PostMapping("/processuserrole")
-    public String processUserRole(Model model, User user, Role role){
-        userService.saveUser(user);
+    public String processUserRole(@Valid User user, BindingResult result){
+//        user.setRoles().add(role);
+        userRepository.save(user);
 
-        return "redirect:/showuser";
+        return "showuser";
     }
 
     @RequestMapping("/detail_role/{id}")

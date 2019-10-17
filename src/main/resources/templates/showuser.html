@@ -31,8 +31,8 @@
                 <td>Roles: &nbsp;</td>
                 <td>
                     <tr th:each="role : ${user.roles}">
-<!--            following doesn't list role name in English-->
-                        <td th:text="${role}"></td>
+<!--fixed following line so it returned English instead of hex address by using role.role instead of just role-->
+                        <td th:text="${role.role}"></td>
                         <td>
                             <a th:href="@{delete_user_role/{id}(id=${role.id})}">Delete</a>
                         </td>
@@ -44,10 +44,20 @@
         <h6>Add a Role for This User</h6>
         <br>
         <form action="#" th:action="@{/processuserrole}" th:object="${user}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{email}"/>
+            <input type="hidden" th:field="*{password}"/>
+            <input type="hidden" th:field="*{username}"/>
+            <input type="hidden" th:field="*{firstName}"/>
+            <input type="hidden" th:field="*{lastName}"/>
+            <input type="hidden" th:field="*{enabled}"/>
+<!--            <input type="hidden" th:field="*{roles}"/>-->
             <select name="role" th:field="*{roles}">
                 <option th:each="role : ${roles}"
                         th:value="${role.id}"
-                        th:text="${role.role}"></option>
+                        th:text="${role.role}">
+
+                </option>
             </select>
             <br><br>
             <button type="submit" style="color: darkblue"><b>Submit</b></button>
@@ -55,7 +65,7 @@
                 "could not execute statement; SQL [n/a]; constraint [null]; nested exception
                 is org.hibernate.exception.ConstraintViolationException: could not execute statement"
                 ^^^^^^^^it looks like it is trying to save it as a new user with null fields-->
-
+        </form>
     </div>
 </div>
 <br>
