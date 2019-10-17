@@ -96,7 +96,6 @@ public class HomeController {
     @RequestMapping("/detail_user/delete_user_role/{id}")
     public String delUserRole(@PathVariable("id") long id, User user){
         System.out.println("Inside delete method");
-//        Collection<Role> roles = user.getRoles();
         for (Role role : user.getRoles()){
             System.out.println("Inside for loop");
             if(role.getId() == id){
